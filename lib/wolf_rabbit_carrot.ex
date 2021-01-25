@@ -18,7 +18,7 @@ defmodule WolfRabbitCarrot do
       carrot_count: 300,
       new_carrot_count: 5,
       rabbit_count: 1,
-      wolf_count: 1
+      wolf_count: 30
     )
   end
 

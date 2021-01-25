@@ -29,7 +29,7 @@ defmodule WolfRabbitCarrot.WolfEntity do
     # IO.puts("Rabbit tick")
     # state
     # # get best direction
-    # |> Map.put(:direction, WolfRabbitCarrot.WorldFunctions.get_best_direction(state, :rabbit, :nil))
+    # |> WolfRabbitCarrot.WorldFunctions.set_best_direction(:rabbit, :nil)
     # # move
     # |> WolfRabbitCarrot.WorldFunctions.move()
     # # age

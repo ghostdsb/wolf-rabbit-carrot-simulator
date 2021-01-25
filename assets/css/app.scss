@@ -2,6 +2,12 @@
 @import "./phoenix.css";
 @import "../node_modules/nprogress/nprogress.css";
 
+/*
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+*/
+
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,
 .phx-no-feedback .invalid-feedback {
@@ -88,4 +94,31 @@
   color: #a94442;
   display: block;
   margin: -1rem 0 2rem;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+}
+th {
+  text-align: center;
+}
+
+td:first-child, th:first-child {
+  padding-left: 28px;
+}
+
+.board-container{
+  margin: 0 auto;
+  /* max-width: 80.0rem; */
+  padding: 0 2.0rem;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

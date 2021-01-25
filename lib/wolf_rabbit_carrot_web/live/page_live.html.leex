@@ -1,22 +1,82 @@
-<br/>
-<%= for line <- @board do %>
-  <%= for item <- line do %>
-    <%= item %>
-  <% end %>
-  <br/>
-<% end %>
 
-<br/>
-TICK -> <%= @tick %>
-<br/>
+<div class="container">
 
-<div style="border-color:black; width: 100px; background-color: green"> HELLO</div>
-
-carrot -> <%= @population.carrot_pop %>
-<br/>
-
-rabbit -> <%= @population.rabbit_pop %>
-<br/>
-
-wolf -> <%= @population.wolf_pop %>
-<br/>
+  <div class="row">
+    <div class="column column-30">
+      <div class="container">
+        <h1> WOLF RABBIT CARROT </h1>
+        <h3>TICK: <%= @tick %></h3>
+        <div>
+          <div class="board-container">
+            <%= for line <- @board do %>
+              <%= for item <- line do %>
+              <%= item %>
+              <% end %>
+              <br/>
+            <% end %>
+          </div>
+          <table>
+          <br/>
+          <h3>POPULATION</h3>
+          <tbody>
+              <tr>
+                <td>CARROT</td>
+                <td><%= @population.carrot_pop %></td>
+              </tr>
+              <tr>
+                <td>RABBIT</td>
+                <td><%= @population.rabbit_pop %></td>
+              </tr>
+              <tr>
+                <td>WOLF</td>
+                <td><%= @population.wolf_pop %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="column column-70" style="max-height: 840px; min-height: 80px; overflow-y: scroll;">
+      <div class="container">
+        <div class="row">
+          <div class="column column-33">
+            <table>
+              <thead>
+              <tr><td>CARROT</td></tr>
+              </thead>
+              <tbody>
+                <%= for carrot <- @carrots do %>
+                <tr><td><%= inspect(carrot) %></td></tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="column column-33">
+            <table>
+              <thead>
+              <tr><td>RABBIT</td></tr>
+              </thead>
+              <tbody>
+                <%= for rabbit <- @rabbits do %>
+                <tr><td><%= inspect(rabbit) %></td></tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="column column-33">
+            <table>
+              <thead>
+              <tr><td>WOLVES</td></tr>
+              </thead>
+              <tbody>
+                <%= for wolf <- @wolves do %>
+                <tr><td><%= inspect(wolf) %></td></tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

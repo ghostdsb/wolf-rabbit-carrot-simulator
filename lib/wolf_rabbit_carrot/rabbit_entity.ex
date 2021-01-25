@@ -1,5 +1,5 @@
 defmodule WolfRabbitCarrot.RabbitEntity do
-  use GenServer
+  use GenServer, restart: :temporary
 
   def start_link(opts) do
     GenServer.start_link(__MODULE__, [opts], name: :"rabbit#{DateTime.utc_now() |> DateTime.to_iso8601()}")
