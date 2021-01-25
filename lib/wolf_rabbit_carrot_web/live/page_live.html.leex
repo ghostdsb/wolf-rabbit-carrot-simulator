@@ -1,0 +1,22 @@
+<br/>
+<%= for line <- @board do %>
+  <%= for item <- line do %>
+    <%= item %>
+  <% end %>
+  <br/>
+<% end %>
+
+<br/>
+TICK -> <%= @tick %>
+<br/>
+
+<div style="border-color:black; width: 100px; background-color: green"> HELLO</div>
+
+carrot -> <%= @population.carrot_pop %>
+<br/>
+
+rabbit -> <%= @population.rabbit_pop %>
+<br/>
+
+wolf -> <%= @population.wolf_pop %>
+<br/>
