@@ -42,11 +42,11 @@
           <div class="column column-33">
             <table>
               <thead>
-              <tr><td>CARROT</td></tr>
+              <tr><td>CARROTS</td></tr>
               </thead>
               <tbody>
                 <%= for carrot <- @carrots do %>
-                <tr><td><%= inspect(carrot) %></td></tr>
+                <tr><td><%= inspect(carrot) %> <%= WolfRabbitCarrot.CarrotEntity.get_position(carrot) |> inspect %></td></tr>
                 <% end %>
               </tbody>
             </table>
@@ -54,11 +54,11 @@
           <div class="column column-33">
             <table>
               <thead>
-              <tr><td>RABBIT</td></tr>
+              <tr><td>RABBITS</td></tr>
               </thead>
               <tbody>
                 <%= for rabbit <- @rabbits do %>
-                <tr><td><%= inspect(rabbit) %></td></tr>
+                <tr><td><%= inspect(elem(rabbit,0)) %> <%= inspect(elem(rabbit,1)) %></td></tr>
                 <% end %>
               </tbody>
             </table>
@@ -70,7 +70,7 @@
               </thead>
               <tbody>
                 <%= for wolf <- @wolves do %>
-                <tr><td><%= inspect(wolf) %></td></tr>
+                <tr><td><%= inspect(elem(wolf,0)) %> <%= inspect(elem(wolf,1)) %></td></tr>
                 <% end %>
               </tbody>
             </table>

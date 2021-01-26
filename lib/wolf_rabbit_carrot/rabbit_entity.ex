@@ -6,7 +6,12 @@ defmodule WolfRabbitCarrot.RabbitEntity do
   end
 
   def get_position(pid) do
-    GenServer.call(pid, "get_position")
+    cond do
+      Process.alive?(pid) ->
+        GenServer.call(pid, "get_position")
+      true ->
+        :error
+    end
   end
 
   def init([opts]) do
@@ -38,7 +43,7 @@ defmodule WolfRabbitCarrot.RabbitEntity do
       # eat if possible
       |> WolfRabbitCarrot.WorldFunctions.eat(:carrot)
       # breed if possible
-      # |> WolfRabbitCarrot.WorldFunctions.breed()
+      |> WolfRabbitCarrot.WorldFunctions.breed()
       # die if possible
       |> WolfRabbitCarrot.WorldFunctions.check_death()
   end

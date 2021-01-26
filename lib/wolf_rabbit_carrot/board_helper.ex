@@ -47,4 +47,14 @@ defmodule WolfRabbitCarrot.BoardHelper do
     board |> List.replace_at(pos, value)
   end
 
+  def rabbit_data() do
+    WolfRabbitCarrot.WorldFunctions.get_rabbits()
+    |> Enum.map(fn pid -> {pid, WolfRabbitCarrot.RabbitEntity.get_position(pid)} end)
+  end
+
+  def wolf_data() do
+    WolfRabbitCarrot.WorldFunctions.get_wolves()
+    |> Enum.map(fn pid -> {pid, WolfRabbitCarrot.WolfEntity.get_position(pid)} end)
+  end
+
 end

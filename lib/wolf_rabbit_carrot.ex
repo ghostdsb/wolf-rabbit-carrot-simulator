@@ -15,10 +15,10 @@ defmodule WolfRabbitCarrot do
   defmodule WorldState do
     defstruct(
       board_size: 20,
-      carrot_count: 300,
+      carrot_count: 400,
       new_carrot_count: 5,
       rabbit_count: 1,
-      wolf_count: 30
+      wolf_count: 1
     )
   end
 

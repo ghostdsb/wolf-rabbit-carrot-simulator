@@ -26,8 +26,8 @@ defmodule WolfRabbitCarrot.WolfEntity do
   end
 
   def handle_info("tick", state) do
-    # IO.puts("Rabbit tick")
-    # state
+    # state =
+    #   state
     # # get best direction
     # |> WolfRabbitCarrot.WorldFunctions.set_best_direction(:rabbit, :nil)
     # # move
@@ -37,7 +37,7 @@ defmodule WolfRabbitCarrot.WolfEntity do
     # # eat if possible
     # |> WolfRabbitCarrot.WorldFunctions.eat(:rabbit)
     # # breed if possible
-    # # |> WolfRabbitCarrot.WorldFunctions.breed()
+    # |> WolfRabbitCarrot.WorldFunctions.breed()
     # # die if possible
     # |> WolfRabbitCarrot.WorldFunctions.check_death()
     {:noreply, state}

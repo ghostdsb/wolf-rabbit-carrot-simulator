@@ -95,7 +95,7 @@ defmodule WolfRabbitCarrot.WorldFunctions do
     get_carrots()
     |> Enum.filter(fn carrot_pid -> Process.alive?(carrot_pid) end)
     |> Enum.map(fn carrot_pid -> {carrot_pid, WolfRabbitCarrot.CarrotEntity.get_position(carrot_pid)} end)
-    |> Enum.filter(fn val -> val !== :error end)
+    |> Enum.filter(fn {_carrot_pid,val} -> val !== :error end)
     |> Enum.filter( fn {_carrot_pid, %{x: carrot_x, y: carrot_y}} -> x == carrot_x && y == carrot_y end)
     |> try_to_eat(state)
 
@@ -104,11 +104,17 @@ defmodule WolfRabbitCarrot.WorldFunctions do
   def eat(state, :rabbit) do
     %{x: x, y: y} = state.position
 
+    # get_rabbits()
+    # |> Enum.map(fn rabbit_pid -> {rabbit_pid, WolfRabbitCarrot.RabbitEntity.get_position(rabbit_pid)} end)
+    # |> Enum.filter( fn {_rabbit_pid, %{x: rabbit_x, y: rabbit_y}} -> x == rabbit_x && y == rabbit_y end)
+    # |> try_to_eat(state)
+
     get_rabbits()
+    |> Enum.filter(fn rabbit_pid -> Process.alive?(rabbit_pid) end)
     |> Enum.map(fn rabbit_pid -> {rabbit_pid, WolfRabbitCarrot.RabbitEntity.get_position(rabbit_pid)} end)
+    |> Enum.filter(fn {_rabbit_pid,val} -> val !== :error end)
     |> Enum.filter( fn {_rabbit_pid, %{x: rabbit_x, y: rabbit_y}} -> x == rabbit_x && y == rabbit_y end)
     |> try_to_eat(state)
-
   end
 
   defp try_to_eat([], state), do: state
@@ -131,7 +137,6 @@ defmodule WolfRabbitCarrot.WorldFunctions do
   def check_death(%{age: age, max_life: max_life} = state) do
     cond do
       age > max_life ->
-        IO.puts("rabbit dead")
         {:stop, :shutdown, state}
       true ->
         {:noreply, state}
@@ -154,6 +159,7 @@ defmodule WolfRabbitCarrot.WorldFunctions do
 
       |> Enum.map(fn position -> {position, set_position_score(position, food_type, danger_type)} end)
       |> Enum.sort(fn {_a1, s1}, {_a2, s2} -> s1>s2 end)
+      |> shuffle_equal_food_positions()
       |> no_food_check()
       |> Enum.map(fn {position, _score} -> position end)
 
@@ -170,6 +176,17 @@ defmodule WolfRabbitCarrot.WorldFunctions do
         position_score_tuple_list |> Enum.shuffle()
       true -> position_score_tuple_list
     end
+  end
+
+  defp shuffle_equal_food_positions(position_score_tuple_list) do
+    food_positions =
+      position_score_tuple_list
+      |> Enum.filter(fn {_position, score} -> score === 1000 end)
+      |> Enum.shuffle()
+    non_food_positions =
+      position_score_tuple_list
+      |> Enum.filter(fn {_position, score} -> score !== 1000 end)
+    food_positions ++ non_food_positions
   end
 
   def get_general_direction(nil, _self_pos), do: "c"
@@ -211,11 +228,18 @@ defmodule WolfRabbitCarrot.WorldFunctions do
     get_carrots()
     |> Enum.filter(fn carrot_pid -> Process.alive?(carrot_pid) end)
     |> Enum.map(fn carrot_pid -> WolfRabbitCarrot.CarrotEntity.get_position(carrot_pid) end)
+    |> Enum.filter(fn pos -> pos != :error end)
     |> Enum.any?(fn %{x: carrot_x, y: carrot_y} = _carrot_position -> carrot_x == x && carrot_y == y end)
   end
 
   def food_here?(%{x: x, y: y} = _position, :rabbit) do
-    get_position(:rabbit)
+    # get_position(:rabbit)
+    # |> Enum.any?(fn %{x: rabbit_x, y: rabbit_y} = _rabbit_position -> rabbit_x == x && rabbit_y == y end)
+
+    get_rabbits()
+    |> Enum.filter(fn rabbit_pid -> Process.alive?(rabbit_pid) end)
+    |> Enum.map(fn rabbit_pid -> WolfRabbitCarrot.RabbitEntity.get_position(rabbit_pid) end)
+    |> Enum.filter(fn pos -> pos != :error end)
     |> Enum.any?(fn %{x: rabbit_x, y: rabbit_y} = _rabbit_position -> rabbit_x == x && rabbit_y == y end)
   end
 

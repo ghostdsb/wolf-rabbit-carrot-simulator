@@ -1,20 +1,13 @@
-# WolfRabbitCarrot
+# Wolf Rabbit Carrot World
 
-To start your Phoenix server:
+A simulated world inhabited by wolves, rabbits and carrots.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
+### Problem Statement:
+1. Carrots grow in random patches
+2. Rabbits roam around eating carrots, reproducing and running from wolves.
+3. Wolves roam around eating rabbits, reproducing.
+4. When a rabbit finds a carrot, nearby rabbits are messaged about the location. 
+5. When a wolf finds a rabbit, nearby wolves are messaged about the location.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+### Result
+![result](./assets/wrc_000.gif)
