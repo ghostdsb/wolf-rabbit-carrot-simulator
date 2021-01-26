@@ -11,3 +11,9 @@ A simulated world inhabited by wolves, rabbits and carrots.
 
 ### Result
 ![result](./assets/wrc_000.gif)
+
+
+### To do
+
+1. Better next step calculation
+2. Wolf movement bugs
