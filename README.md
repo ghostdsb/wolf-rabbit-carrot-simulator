@@ -10,6 +10,8 @@ A simulated world inhabited by wolves, rabbits and carrots.
 5. When a wolf finds a rabbit, nearby wolves are messaged about the location.
 
 ### Result
+Using Phoenix LiveView.
+
 ![result](./assets/wrc_000.gif)
 
 
